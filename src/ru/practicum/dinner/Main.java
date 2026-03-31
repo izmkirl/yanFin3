@@ -23,12 +23,12 @@ public class Main {
                     //addNewDish();
                     dc.addNewDish("1","11");
                     dc.addNewDish("1","12");
-                    dc.addNewDish("1","13");
-                    dc.addNewDish("1","14");
+                    //dc.addNewDish("1","13");
+                    //dc.addNewDish("1","14");
                     dc.addNewDish("2","21");
                     dc.addNewDish("2","22");
-                    dc.addNewDish("2","23");
-                    dc.addNewDish("2","24");
+                    //dc.addNewDish("2","23");
+                    //dc.addNewDish("2","24");
 
 
 
@@ -82,8 +82,8 @@ public class Main {
 
         // сгенерируйте комбинации блюд и выведите на экран
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes); //сгенерируйте варианты комбинаций блюд с помощью метода DinnerConstructor generateCombos
-        for (int i = 0; i < numberOfCombos; i++) {
-            System.out.println("Комбинация " + i);
+        for (int i = 0; i < generatedCombos.size(); i++) {
+            System.out.println("Комбинация " + (i+1));
             System.out.println(generatedCombos.get(i)); //выведите каждый элемент получившейся комбинации
         }
     }

@@ -24,6 +24,7 @@ public class DinnerConstructor {
     }
 
     //метод для генерирования вариантов комбинации блюд
+    /*
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
         ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
         for (int i = 0; i <= comboNumber; i++) {
@@ -32,7 +33,35 @@ public class DinnerConstructor {
         }
         return combos;
     }
+    */
 
+    public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
+        ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
+        ArrayList<String> combo = generateCombo(dishTypes);
+        combos.add(combo);
+        for (int i = 0; i <= comboNumber-2; i++) {
+            boolean chek = true;
+            int icheck = 0;
+            while (chek) {
+                combo = generateCombo(dishTypes);
+                for (int j = 0; j < combos.size(); j++) {
+                    chek = false;
+                    if (combos.get(j).equals(combo)) {
+                        chek = true;
+                        icheck++;
+                        break;
+                    }
+                }
+                if (icheck > 10) {
+                    break;
+                }
+            }
+            if (icheck < 10) {
+                combos.add(combo);
+            }
+        }
+        return combos;
+    }
 
     //метод для проверки дубликатов блюд
     public boolean checkType(String type) {
