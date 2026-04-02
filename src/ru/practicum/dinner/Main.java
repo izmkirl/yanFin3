@@ -93,10 +93,12 @@ public class Main {
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
         }
-        System.out.println("ccc " + dc.checkMaxCombo(selectedTypes));
 
         // сгенерируйте комбинации блюд и выведите на экран
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes); //сгенерируйте варианты комбинаций блюд с помощью метода DinnerConstructor generateCombos
+        if (generatedCombos.size() < numberOfCombos){
+            System.out.println("Уникальный комбинаций оказалось меньше, чем вы запрашивали");
+        }
         for (int i = 0; i < generatedCombos.size(); i++) {
             System.out.println("Комбинация " + (i+1));
             System.out.println(generatedCombos.get(i)); //выведите каждый элемент получившейся комбинации

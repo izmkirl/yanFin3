@@ -17,17 +17,6 @@ public class DinnerConstructor {
         return dinnersByType.get(type).isEmpty();
     }
 
-    public int checkMaxCombo(ArrayList<String> types){
-
-        int x =1;
-
-        for (String type : types) {
-            x = x * dinnersByType.get(type).size();
-        }
-        return x;
-    };
-
-
     //добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
         ArrayList<String> dishesForType; //переменая для списка блюд
@@ -60,7 +49,7 @@ public class DinnerConstructor {
         ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
         ArrayList<String> combo = generateCombo(dishTypes);
         combos.add(combo);
-        for (int i = 0; i <= comboNumber-2; i++) {
+        for (int i = 0; i < comboNumber-1; i++) {
             boolean chek = true;
             int icheck = 0;
             while (chek) {
