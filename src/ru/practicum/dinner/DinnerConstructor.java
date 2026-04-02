@@ -46,33 +46,36 @@ public class DinnerConstructor {
 
     // вариант с выводом только уникальных комбинаций без повторений
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
-        ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
-        ArrayList<String> combo = generateCombo(dishTypes);
-        combos.add(combo);
-        for (int i = 0; i < comboNumber-1; i++) {
-            boolean chek = true;
-            int icheck = 0;
-            while (chek) {
+        ArrayList<ArrayList<String>> combos = new ArrayList<>();
+        ArrayList<String> combo;
+        for (int i = 0; i < comboNumber; i++) {
+            int sumError = 0;
+            while (true) {
                 combo = generateCombo(dishTypes);
-                for (int j = 0; j < combos.size(); j++) {
-                    chek = false;
-                    if (combos.get(j).equals(combo)) {
-                        chek = true;
-                        icheck++;
+                if (checkOriginality(combo,combos) || combos.isEmpty()){
+                    combos.add(combo);
+                    break;
+                }else {
+                    sumError++;
+                    if (sumError > comboNumber) {
                         break;
                     }
                 }
-                if (icheck > 10) {
-                    break;
-                }
-            }
-            if (icheck < 10) {
-                combos.add(combo);
             }
         }
         return combos;
     }
 
+    private boolean checkOriginality(ArrayList<String> combo, ArrayList<ArrayList<String>> combos) {
+        boolean orig = true;
+        for (int j = 0; j < combos.size(); j++) {
+            if (combos.get(j).equals(combo)) {
+                orig = false;
+                break;
+            }
+        }
+        return orig;
+    }
 
 
     //метод для проверки дубликатов блюд
