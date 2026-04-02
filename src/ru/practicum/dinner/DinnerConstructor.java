@@ -6,10 +6,19 @@ import java.util.Random;
 
 public class DinnerConstructor {
 
-    HashMap<String, ArrayList<String>> dinnersByType = new HashMap<>(); // хранилище блюд: ключ — тип блюда (например, "Суп"), значение — список названий блюд этого типа
+    private HashMap<String, ArrayList<String>> dinnersByType = new HashMap<>(); // хранилище блюд: ключ — тип блюда (например, "Суп"), значение — список названий блюд этого типа
     Random random = new Random(); //этот вспомогательный класс поможет сделать произвольные сочетания блюд
 
-    //в этом методе мы добавляем компонент в подборку
+    boolean isEmptyDinner (){
+        return dinnersByType.isEmpty();
+    }
+
+    boolean isEmptyDinnerByType (String type){
+        return dinnersByType.get(type).isEmpty();
+    }
+
+
+    //добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
         ArrayList<String> dishesForType; //переменая для списка блюд
         if (dinnersByType.containsKey(dishType)) { //здесь мы должны проверить, содержит ли наше хранилище такое блюдо
@@ -27,7 +36,7 @@ public class DinnerConstructor {
 
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
         ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
-        for (int i = 0; i <= comboNumber; i++) {
+        for (int i = 0; i < comboNumber; i++) {
             ArrayList<String> combo = generateCombo(dishTypes); //одна комбинация блюд генерируется в отдельном методе
             combos.add(combo);
         }

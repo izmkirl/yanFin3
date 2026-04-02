@@ -27,10 +27,15 @@ public class Main {
                     break;
                 case "3":
                     return;
+                default:
+                    printErrorCmd();
             }
         }
     }
 
+    private static void printErrorCmd(){
+        System.out.println("Извините, такой команды нет");
+    }
     private static void printMenu() {
         System.out.println("Выберите команду:");
         System.out.println("1 - Добавить новое блюдо");
@@ -41,15 +46,28 @@ public class Main {
     private static void addNewDish() {
         System.out.println("Введите тип блюда:");
         String dishType = scanner.nextLine();
+        while (dishType.isEmpty()){
+            System.out.println("Вы не ввели тип блюда, попробуйте снова");
+            dishType = scanner.nextLine();
+        }
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
+
+        while (dishName.isEmpty()){
+            System.out.println("Вы не ввели название блюда, попробуйте снова");
+            dishName = scanner.nextLine();
+        }
         dc.addNewDish(dishType,dishName);
-        // добавьте новое блюдо, с помощью метода DinnerConstructor addNewDish
+
     }
 
     private static void generateDishCombo() {
         System.out.println("Начинаем конструировать обед...");
-
+        // проверка не есть ли в целом блюда (не пустая ли таблица)
+        if (dc.isEmptyDinner()){
+            System.out.println("Список блюд пуст, комбинации невозможны");
+            return;
+        }
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
@@ -59,11 +77,14 @@ public class Main {
 
         //реализуйте ввод типов блюд
         ArrayList<String> selectedTypes = new ArrayList<>();
-        while (!nextItem.isEmpty()) { //варианты вводит пользователь
-            if (dc.checkType(nextItem)) { //но вы должны проверить, существуют ли эти блюда в хранилище с помощью метода DinnerConstructor checkType
-                selectedTypes.add(nextItem); //выбранное блюдо добавьте в список вариантов
+        while (!nextItem.isEmpty()) {
+            if (dc.checkType(nextItem)) {
+                selectedTypes.add(nextItem);
             } else {
                 System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");
+            }
+            if (dc.isEmptyDinnerByType(nextItem)){
+                System.out.println("Извините, данного типа, блюда отсутствуют");
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
         }
