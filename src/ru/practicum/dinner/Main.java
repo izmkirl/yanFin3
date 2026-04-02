@@ -13,6 +13,11 @@ public class Main {
     public static void main(String[] args) {
         dc = new DinnerConstructor();
         scanner = new Scanner(System.in);
+        dc.addNewDish("1","11");
+        dc.addNewDish("1","12");
+        dc.addNewDish("2","21");
+        dc.addNewDish("2","22");
+
 
         while (true) {
             printMenu();
@@ -88,6 +93,7 @@ public class Main {
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
         }
+        System.out.println("ccc " + dc.checkMaxCombo(selectedTypes));
 
         // сгенерируйте комбинации блюд и выведите на экран
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes); //сгенерируйте варианты комбинаций блюд с помощью метода DinnerConstructor generateCombos
@@ -95,6 +101,8 @@ public class Main {
             System.out.println("Комбинация " + (i+1));
             System.out.println(generatedCombos.get(i)); //выведите каждый элемент получившейся комбинации
         }
+
+
     }
 
 
