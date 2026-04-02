@@ -24,7 +24,7 @@ public class DinnerConstructor {
     }
 
     //метод для генерирования вариантов комбинации блюд
-    /*
+
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
         ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
         for (int i = 0; i <= comboNumber; i++) {
@@ -33,8 +33,9 @@ public class DinnerConstructor {
         }
         return combos;
     }
-    */
 
+    /*
+    // вариант с выводом только уникальных комбинаций без повторений
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
         ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
         ArrayList<String> combo = generateCombo(dishTypes);
@@ -62,7 +63,7 @@ public class DinnerConstructor {
         }
         return combos;
     }
-
+*/
     //метод для проверки дубликатов блюд
     public boolean checkType(String type) {
         return dinnersByType.containsKey(type); //если хранилище уже содержит такое блюдо - вернём true
