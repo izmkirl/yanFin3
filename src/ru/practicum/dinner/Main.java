@@ -20,19 +20,7 @@ public class Main {
 
             switch (command) {
                 case "1":
-                    //addNewDish();
-                    dc.addNewDish("1","11");
-                    dc.addNewDish("1","12");
-                    //dc.addNewDish("1","13");
-                    //dc.addNewDish("1","14");
-                    dc.addNewDish("2","21");
-                    dc.addNewDish("2","22");
-                    //dc.addNewDish("2","23");
-                    //dc.addNewDish("2","24");
-
-
-
-
+                    addNewDish();
                     break;
                 case "2":
                     generateDishCombo();
