@@ -13,10 +13,6 @@ public class Main {
     public static void main(String[] args) {
         dc = new DinnerConstructor();
         scanner = new Scanner(System.in);
-        dc.addNewDish("1","11");
-        dc.addNewDish("1","12");
-        dc.addNewDish("2","21");
-        dc.addNewDish("2","22");
 
 
         while (true) {
@@ -41,6 +37,7 @@ public class Main {
     private static void printErrorCmd(){
         System.out.println("Извините, такой команды нет");
     }
+
     private static void printMenu() {
         System.out.println("Выберите команду:");
         System.out.println("1 - Добавить новое блюдо");
@@ -63,7 +60,6 @@ public class Main {
             dishName = scanner.nextLine();
         }
         dc.addNewDish(dishType,dishName);
-
     }
 
     private static void generateDishCombo() {
@@ -76,11 +72,9 @@ public class Main {
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
-
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();
 
-        //реализуйте ввод типов блюд
         ArrayList<String> selectedTypes = new ArrayList<>();
         while (!nextItem.isEmpty()) {
             if (dc.checkType(nextItem)) {

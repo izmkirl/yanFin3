@@ -31,19 +31,6 @@ public class DinnerConstructor {
 
     }
 
-    //метод для генерирования вариантов комбинации блюд
-    /*
-    public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
-        ArrayList<ArrayList<String>> combos = new ArrayList<>(); //пустой список для хранения получившихся комбинаций блюд
-        for (int i = 0; i < comboNumber; i++) {
-            ArrayList<String> combo = generateCombo(dishTypes); //одна комбинация блюд генерируется в отдельном методе
-            combos.add(combo);
-        }
-        return combos;
-    }
-    */
-
-
     // вариант с выводом только уникальных комбинаций без повторений
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
         ArrayList<ArrayList<String>> combos = new ArrayList<>();
