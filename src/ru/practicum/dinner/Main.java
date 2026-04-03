@@ -69,13 +69,15 @@ public class Main {
             System.out.println("Список блюд пуст, комбинации невозможны");
             return;
         }
+
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
-        String nextItem = scanner.nextLine();
 
+        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+        String nextItem = scanner.nextLine();;
         ArrayList<String> selectedTypes = new ArrayList<>();
+        // ввод блюд пока не будет пустая строка
         while (!nextItem.isEmpty()) {
             if (dc.checkType(nextItem)) {
                 selectedTypes.add(nextItem);
@@ -87,15 +89,18 @@ public class Main {
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
         }
-
-        // сгенерируйте комбинации блюд и выведите на экран
-        ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes); //сгенерируйте варианты комбинаций блюд с помощью метода DinnerConstructor generateCombos
+        if (selectedTypes.isEmpty()){
+            System.out.println("Не было введено ни одного типа блюд");
+            return;
+        }
+        // генерация комбинаций блюд
+        ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes);
         if (generatedCombos.size() < numberOfCombos){
             System.out.println("Уникальный комбинаций оказалось меньше, чем вы запрашивали");
         }
         for (int i = 0; i < generatedCombos.size(); i++) {
             System.out.println("Комбинация " + (i+1));
-            System.out.println(generatedCombos.get(i)); //выведите каждый элемент получившейся комбинации
+            System.out.println(generatedCombos.get(i));
         }
 
 

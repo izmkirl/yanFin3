@@ -19,26 +19,27 @@ public class DinnerConstructor {
 
     //добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
-        ArrayList<String> dishesForType; //переменая для списка блюд
-        if (dinnersByType.containsKey(dishType)) { //здесь мы должны проверить, содержит ли наше хранилище такое блюдо
-            dishesForType = dinnersByType.get(dishType);//если мы уже работали с этим типом - используем существующий список
+        ArrayList<String> dishesForType;                        //переменная для списка блюд
+        if (dinnersByType.containsKey(dishType)) {
+            dishesForType = dinnersByType.get(dishType);
         } else {
-            dishesForType = new ArrayList<>();//для нового типа блюд создаём пустой список компонентов.
-            dinnersByType.put(dishType, dishesForType); //запоминаем новый список в хранилище
+            dishesForType = new ArrayList<>();
+            dinnersByType.put(dishType, dishesForType);
         }
 
-        dishesForType.add(dishName); //независимо от того, новый это список или существующий - добавим в него конкретное блюдо
+        dishesForType.add(dishName);
 
     }
 
-    // вариант с выводом только уникальных комбинаций без повторений
+    // генерация уникальных комбинаций
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
-        ArrayList<ArrayList<String>> combos = new ArrayList<>();
-        ArrayList<String> combo;
+        ArrayList<ArrayList<String>> combos = new ArrayList<>();    // список комбинаций
+        ArrayList<String> combo;                                    // новая комбинация
         for (int i = 0; i < comboNumber; i++) {
-            int sumError = 0;
+            int sumError = 0;                                       // счетчик ошибок уникальности новой комбинации
             while (true) {
                 combo = generateCombo(dishTypes);
+                // проверка комбинации и запись первой комбинации без проверки
                 if (checkOriginality(combo,combos) || combos.isEmpty()){
                     combos.add(combo);
                     break;
@@ -53,9 +54,10 @@ public class DinnerConstructor {
         return combos;
     }
 
+    // вспомогательный метод для проверки уникальности комбинации
     private boolean checkOriginality(ArrayList<String> combo, ArrayList<ArrayList<String>> combos) {
-        boolean orig = true;
-        for (int j = 0; j < combos.size(); j++) {
+        boolean orig = true;                        // возвращаемый флаг (будто можно заменить на два return, но будет менее читабельно)
+                for (int j = 0; j < combos.size(); j++) {
             if (combos.get(j).equals(combo)) {
                 orig = false;
                 break;
@@ -65,9 +67,9 @@ public class DinnerConstructor {
     }
 
 
-    //метод для проверки дубликатов блюд
+    //метод для проверки наличия блюд
     public boolean checkType(String type) {
-        return dinnersByType.containsKey(type); //если хранилище уже содержит такое блюдо - вернём true
+        return dinnersByType.containsKey(type);
     }
 
 
@@ -82,11 +84,11 @@ public class DinnerConstructor {
         return selectedDishes;
     }
 
-
+    // генерация рандомного блюда
     private String getRandomDish(ArrayList<String> availableDishes) {
         int numberOfDishesForType = availableDishes.size();
         int dishIndex = random.nextInt(numberOfDishesForType);
-        return availableDishes.get(dishIndex); //выберем произвольное блюдо по индексу
+        return availableDishes.get(dishIndex);
 
     }
 
