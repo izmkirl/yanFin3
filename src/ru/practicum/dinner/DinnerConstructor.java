@@ -20,6 +20,7 @@ public class DinnerConstructor {
     //добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
         ArrayList<String> dishesForType;                        //переменная для списка блюд
+
         if (dinnersByType.containsKey(dishType)) {
             dishesForType = dinnersByType.get(dishType);
         } else {
@@ -33,11 +34,14 @@ public class DinnerConstructor {
 
     // генерация списка блюд
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
+
         ArrayList<ArrayList<String>> combos = new ArrayList<>();
+
         for (int i = 0; i < comboNumber; i++) {
             ArrayList<String> combo = generateCombo(dishTypes);
             combos.add(combo);
         }
+
         return combos;
     }
 
@@ -49,12 +53,15 @@ public class DinnerConstructor {
 
     //метод для генерирования одной комбинации блюд
     private ArrayList<String> generateCombo(ArrayList<String> dishTypes) {
+
         ArrayList<String> selectedDishes = new ArrayList<>();
+
         for (String dishType: dishTypes) {
             ArrayList<String> availableDishes = dinnersByType.get(dishType); //достаём из хранилища варианты блюд по типу
             String selectedDish = getRandomDish(availableDishes);
             selectedDishes.add(selectedDish); //добавим блюдо в подборку комбинацию
         }
+
         return selectedDishes;
     }
 
@@ -62,8 +69,8 @@ public class DinnerConstructor {
     private String getRandomDish(ArrayList<String> availableDishes) {
         int numberOfDishesForType = availableDishes.size();
         int dishIndex = random.nextInt(numberOfDishesForType);
-        return availableDishes.get(dishIndex);
 
+        return availableDishes.get(dishIndex);
     }
 
 }
