@@ -14,7 +14,11 @@ public class DinnerConstructor {
     }
 
     public boolean isEmptyDinnerByType (String type){
-        return dinnersByType.get(type).isEmpty();
+        if (dinnersByType.containsKey(type)) {
+            return dinnersByType.get(type).isEmpty();
+        }else {
+            return false;
+        }
     }
 
     //добавляем компонент в подборку

@@ -72,28 +72,30 @@ public class Main {
 
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
+        while (numberOfCombos < 1){
+            System.out.println("Введено неверное число, попробуйте снова");
+            numberOfCombos = scanner.nextInt();
+        }
         scanner.nextLine();
 
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();;
         ArrayList<String> selectedTypes = new ArrayList<>();
         // ввод блюд пока не будет пустая строка
-        while (!nextItem.isEmpty()) {
-            if (dc.checkType(nextItem)) {
-                selectedTypes.add(nextItem);
-            } else {
+        while (true) {
+            if (nextItem.isEmpty() && !selectedTypes.isEmpty()) {
+                break;
+            }else if (nextItem.isEmpty() && selectedTypes.isEmpty()){
+                System.out.println("Не было введено ни одного типа блюд");
+            }else if (!dc.checkType(nextItem)) {
                 System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");
-                return;
-            }
-            if (dc.isEmptyDinnerByType(nextItem)){
+            } else if (dc.isEmptyDinnerByType(nextItem)){
                 System.out.println("Извините, данного типа, блюда отсутствуют");
-                return;
+            } else {
+                System.out.println("Добавлен тип блюда: '" + nextItem + "'. Добавьте еще блюда, или введите пустую строку чтобы завершить");
+                selectedTypes.add(nextItem);
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
-        }
-        if (selectedTypes.isEmpty()){
-            System.out.println("Не было введено ни одного типа блюд");
-            return;
         }
         // генерация комбинаций блюд
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes);
