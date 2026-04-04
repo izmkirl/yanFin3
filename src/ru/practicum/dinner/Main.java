@@ -95,9 +95,6 @@ public class Main {
         }
         // генерация комбинаций блюд
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes);
-        if (generatedCombos.size() < numberOfCombos){
-            System.out.println("Уникальный комбинаций оказалось меньше, чем вы запрашивали");
-        }
         for (int i = 0; i < generatedCombos.size(); i++) {
             System.out.println("Комбинация " + (i+1));
             System.out.println(generatedCombos.get(i));
