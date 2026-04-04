@@ -70,11 +70,11 @@ public class Main {
             return;
         }
 
+        // ввод и проверка числа
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos;
-
         while (true) {
-            String input = scanner.next();
+            String input = scanner.nextLine();
             try {
                 numberOfCombos = Integer.parseInt(input);
                 if (numberOfCombos < 1) {
