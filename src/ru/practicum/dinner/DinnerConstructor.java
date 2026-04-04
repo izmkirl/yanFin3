@@ -31,41 +31,15 @@ public class DinnerConstructor {
 
     }
 
-    // генерация уникальных комбинаций
+    // генерация списка блюд
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
-        ArrayList<ArrayList<String>> combos = new ArrayList<>();    // список комбинаций
-        ArrayList<String> combo;                                    // новая комбинация
+        ArrayList<ArrayList<String>> combos = new ArrayList<>();
         for (int i = 0; i < comboNumber; i++) {
-            int sumError = 0;                                       // счетчик ошибок уникальности новой комбинации
-            while (true) {
-                combo = generateCombo(dishTypes);
-                // проверка комбинации и запись первой комбинации без проверки
-                if (checkOriginality(combo,combos) || combos.isEmpty()){
-                    combos.add(combo);
-                    break;
-                }else {
-                    sumError++;
-                    if (sumError > comboNumber) {
-                        break;
-                    }
-                }
-            }
+            ArrayList<String> combo = generateCombo(dishTypes);
+            combos.add(combo);
         }
         return combos;
     }
-
-    // вспомогательный метод для проверки уникальности комбинации
-    private boolean checkOriginality(ArrayList<String> combo, ArrayList<ArrayList<String>> combos) {
-        boolean orig = true;                        // возвращаемый флаг (будто можно заменить на два return, но будет менее читабельно)
-                for (int j = 0; j < combos.size(); j++) {
-            if (combos.get(j).equals(combo)) {
-                orig = false;
-                break;
-            }
-        }
-        return orig;
-    }
-
 
     //метод для проверки наличия блюд
     public boolean checkType(String type) {
