@@ -71,12 +71,22 @@ public class Main {
         }
 
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
-        int numberOfCombos = scanner.nextInt();
-        while (numberOfCombos < 1){
-            System.out.println("Введено неверное число, попробуйте снова");
-            numberOfCombos = scanner.nextInt();
+        int numberOfCombos;
+
+        while (true) {
+            String input = scanner.next();
+            try {
+                numberOfCombos = Integer.parseInt(input);
+                if (numberOfCombos < 1) {
+                    System.out.println("Введено неверное число, попробуйте снова");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Введите число!");
+            }
         }
-        scanner.nextLine();
+
 
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();;
@@ -89,8 +99,6 @@ public class Main {
                 System.out.println("Не было введено ни одного типа блюд");
             }else if (!dc.checkType(nextItem)) {
                 System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");
-            } else if (dc.isEmptyDinnerByType(nextItem)){
-                System.out.println("Извините, данного типа, блюда отсутствуют");
             } else {
                 System.out.println("Добавлен тип блюда: '" + nextItem + "'. Добавьте еще блюда, или введите пустую строку чтобы завершить");
                 selectedTypes.add(nextItem);

@@ -13,14 +13,6 @@ public class DinnerConstructor {
         return dinnersByType.isEmpty();
     }
 
-    public boolean isEmptyDinnerByType (String type){
-        if (dinnersByType.containsKey(type)) {
-            return dinnersByType.get(type).isEmpty();
-        }else {
-            return false;
-        }
-    }
-
     //добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
         ArrayList<String> dishesForType;                        //переменная для списка блюд
