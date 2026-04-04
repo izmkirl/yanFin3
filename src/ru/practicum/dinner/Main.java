@@ -83,9 +83,11 @@ public class Main {
                 selectedTypes.add(nextItem);
             } else {
                 System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");
+                return;
             }
             if (dc.isEmptyDinnerByType(nextItem)){
                 System.out.println("Извините, данного типа, блюда отсутствуют");
+                return;
             }
             nextItem = scanner.nextLine(); //перейдите к следующему пункту ввода пользователя
         }
